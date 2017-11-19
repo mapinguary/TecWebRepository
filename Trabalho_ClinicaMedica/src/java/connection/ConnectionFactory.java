@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 
 
+
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
  * object.
@@ -24,7 +25,7 @@ public class ConnectionFactory {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
-            sessionFactory = new AnnotationConfiguration().configure("").buildSessionFactory();
+            sessionFactory = new AnnotationConfiguration().configure("C:\\Users\\MAPINGUARY\\Desktop\\trabWeb\\TecWebRepository\\Trabalho_ClinicaMedica\\src\\java\\connection\\hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);
@@ -32,7 +33,7 @@ public class ConnectionFactory {
         }
     }
     
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public static Session getSessionFactory() {
+        return sessionFactory.openSession();
     }
 }
