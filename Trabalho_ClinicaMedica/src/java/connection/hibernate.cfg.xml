@@ -41,6 +41,15 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/clinicamedica</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">1234</property>
+    <mapping resource="bean/Especialidades.hbm.xml"/>
+    <mapping resource="bean/Consulta.hbm.xml"/>
+    <mapping resource="bean/Exame.hbm.xml"/>
+    <mapping resource="bean/Medico.hbm.xml"/>
+    <mapping resource="bean/Paciente.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

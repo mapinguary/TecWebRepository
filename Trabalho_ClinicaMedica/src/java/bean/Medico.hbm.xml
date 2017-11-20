@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/11/2017 18:52:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bean.Medico" table="medico" catalog="clinicamedica" optimistic-lock="version">
+        <id name="medcrm" type="int">
+            <column name="medcrm" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="especialidades" class="bean.Especialidades" fetch="select">
+            <column name="medespcod" not-null="true" />
+        </many-to-one>
+        <property name="mednome" type="string">
+            <column name="mednome" length="30" not-null="true" />
+        </property>
+        <property name="medcpf" type="string">
+            <column name="medcpf" length="14" />
+        </property>
+        <property name="medfone" type="string">
+            <column name="medfone" length="12" />
+        </property>
+        <property name="medendereco" type="string">
+            <column name="medendereco" length="30" />
+        </property>
+        <set name="consultas" table="consulta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="consmedcrm" not-null="true" />
+            </key>
+            <one-to-many class="bean.Consulta" />
+        </set>
+    </class>
+</hibernate-mapping>

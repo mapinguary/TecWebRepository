@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/11/2017 18:52:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bean.Consulta" table="consulta" catalog="clinicamedica" optimistic-lock="version">
+        <id name="conscod" type="java.lang.Integer">
+            <column name="conscod" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="exame" class="bean.Exame" fetch="select">
+            <column name="consexcod" not-null="true" />
+        </many-to-one>
+        <many-to-one name="medico" class="bean.Medico" fetch="select">
+            <column name="consmedcrm" not-null="true" />
+        </many-to-one>
+        <many-to-one name="paciente" class="bean.Paciente" fetch="select">
+            <column name="conspaccod" not-null="true" />
+        </many-to-one>
+        <property name="consserv" type="string">
+            <column name="consserv" length="30" not-null="true" />
+        </property>
+        <property name="consdtconsulta" type="string">
+            <column name="consdtconsulta" length="14" />
+        </property>
+    </class>
+</hibernate-mapping>

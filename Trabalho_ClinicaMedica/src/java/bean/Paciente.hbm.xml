@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/11/2017 18:52:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bean.Paciente" table="paciente" catalog="clinicamedica" optimistic-lock="version">
+        <id name="paccod" type="java.lang.Integer">
+            <column name="paccod" />
+            <generator class="identity" />
+        </id>
+        <property name="pacnome" type="string">
+            <column name="pacnome" length="30" not-null="true" />
+        </property>
+        <property name="pacendereco" type="string">
+            <column name="pacendereco" length="30" not-null="true" />
+        </property>
+        <property name="pacfone" type="string">
+            <column name="pacfone" length="12" not-null="true" />
+        </property>
+        <property name="pacemail" type="string">
+            <column name="pacemail" length="20" not-null="true" />
+        </property>
+        <set name="consultas" table="consulta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="conspaccod" not-null="true" />
+            </key>
+            <one-to-many class="bean.Consulta" />
+        </set>
+    </class>
+</hibernate-mapping>
