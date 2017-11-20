@@ -1,29 +1,30 @@
 
 package dao;
+
+import bean.Consulta;
 import bean.Paciente;
-import java.util.ArrayList;
 import connection.ConnectionFactory;
+import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Query;
 import javax.swing.JOptionPane;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 
+public class consultaDao {
 
-
-public class pacienteDao {
     Session session;
     Transaction transaction;
     
-    List<Paciente>listaPaciente =  new ArrayList<Paciente>();
+    List<Consulta> listaconsulta =  new ArrayList<Consulta>();
     
-    public void salvar(Paciente paciente){
+    public void salvar(Consulta consulta){
     
         try{
             session =  new ConnectionFactory().getSessionFactory();            
             transaction  = session.beginTransaction();
-            session.save(paciente);
+            session.save(consulta);
             transaction.commit();
             session.close();                       
         
@@ -35,12 +36,12 @@ public class pacienteDao {
         }
     
     }
-     public void alterar(Paciente paciente){
+     public void alterar(Consulta consulta){
     
         try{
             session =  new ConnectionFactory().getSessionFactory();            
             transaction  = session.beginTransaction();
-            session.update(paciente);
+            session.update(consulta);
             transaction.commit();
             session.close();                       
         
@@ -53,35 +54,35 @@ public class pacienteDao {
     
     }
      
-     public Paciente consultarForNome(String nome){
+     public Consulta consultarForNome(String nome){
       session = new ConnectionFactory() .getSessionFactory();
-      Query query = session.createSQLQuery("SELECT * FROM paciente WHERE pacnome = '"+nome+"'").addEntity(Paciente.class);
-      System.out.println("SELECT * FROM  paciente WHERE pacnome = '"+nome+"'");
-             listaPaciente = query.list();
-             return listaPaciente.get(0);
+      Query query = session.createSQLQuery("SELECT * FROM consulta WHERE consserv = '"+nome+"'").addEntity(Consulta.class);
+      System.out.println("SELECT * FROM  paciente WHERE consserv = '"+nome+"'");
+             listaconsulta = query.list();
+             return listaconsulta.get(0);
      
      }
      
-     public List<paciente> listar(){
+     public List<Consulta> listar(){
      session = new ConnectionFactory().getSessionFactory();
-     listaPaciente = session.createCriteria(paciente.class).list();
-     return  listapaciente;
+     listaconsulta = session.createCriteria(Consulta.class).list();
+     return  listaconsulta;
      }
      
-     public paciente consultarPorId(int codigo){
+     public Consulta consultarPorId(int codigo){
          session = new ConnectionFactory().getSessionFactory();
-         Query query  = session.createSQLQuery("SELECT * FROM paciente WHERE paccod = "+codigo+"").addEntity(paciente.class);
-         listaPaciente = query.list();
+         Query query  = session.createSQLQuery("SELECT * FROM consulta WHERE conscod = "+codigo+"").addEntity(Consulta.class);
+         listaconsulta = query.list();
          session.close();
-         return listaPaciente.get(0);
+         return listaconsulta.get(0);
      
      } 
      
-     public void excluir(paciente paciente){
+     public void excluir(Consulta consulta){
      try{
          session = new ConnectionFactory().getSessionFactory();
          transaction =  session.beginTransaction();
-         session.delete(paciente);
+         session.delete(consulta);
          transaction.commit();
          session.close();     
      }catch (Exception e){
@@ -91,9 +92,12 @@ public class pacienteDao {
      }
      }
 
-    public void salvar(Paciente paciente) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /**
+     *
+     * @param consulta
+     */
+    public void salvar(consulta consulta) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
-     
      
 }
