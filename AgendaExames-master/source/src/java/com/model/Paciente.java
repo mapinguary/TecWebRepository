@@ -179,7 +179,7 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.arthurassuncao.model.Paciente[ idPaciente=" + idPaciente + " ]";
+        return "com.model.Paciente[ idPaciente=" + idPaciente + " ]";
     }
     
 }

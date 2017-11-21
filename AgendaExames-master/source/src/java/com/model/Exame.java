@@ -115,7 +115,7 @@ public class Exame implements Serializable {
 
     @Override
     public String toString() {
-        return "com.arthurassuncao.model.Exame[ idExame=" + idExame + " ]";
+        return "com.model.Exame[ idExame=" + idExame + " ]";
     }
     
 }

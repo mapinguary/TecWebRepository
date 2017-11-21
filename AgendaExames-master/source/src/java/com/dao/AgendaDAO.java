@@ -6,6 +6,7 @@ import com.model.AgendaPK;
 import com.util.ConexaoBD;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -128,7 +129,7 @@ public class AgendaDAO implements InterfaceDAO<Agenda, AgendaPK> {
   
             return agendas;
         }
-        catch(Exception e){
+        catch(HibernateException e){
             System.out.println("Erro: " + e.getMessage());
             return null;
         }
