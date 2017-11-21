@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="template/template.html">
+        <ui:define name="conteudo">
+            <div class="container well">
+                <h1> Clinica medica </h1><br />
+                <h2>Login</h2>
+                <h5><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h5>
+                <h:form id="form_login" styleClass="form-horizontal">
+                    <fieldset>
+                        <div class="control-group"> 
+                            <label class="control-label required" for="form_login:login">Login: </label>
+                            <div class="controls">
+                                <h:inputText id="login" required="true" value="#{UsuarioController.usuario.nome}" requiredMessage="Digite seu nome de usuario" maxlength="50" /> <h:message for="login" styleClass="alert alert-error" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label required" for="form_login:senha">Senha: </label>
+                            <div class="controls">
+                                <h:inputSecret id="senha" value="#{UsuarioController.usuario.senha}" required="true"  requiredMessage="Digite sua senha" maxlength="50" />  <h:message for="senha" styleClass="alert alert-error" />
+                                <span></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="control-group">
+                        <div class="controls">
+                            <h:commandButton id="botaoLogin" value="Login" action="#{UsuarioController.verificaLogin}" styleClass="btn" />
+                            <h:outputText value=" "/> 
+                            <h:commandButton id="botaoCadastrar" value="Cadastrar" action="#{UsuarioController.salvar}" styleClass="btn" />
+                            <br /><br />
+                            <h:message errorClass="error" for="form_login" styleClass="alert alert-error" />
+                        </div>
+                    </div>
+                    <br />
+                </h:form>
+            </div>
+        </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                add_atributo_form("form_login", "login", "placeholder", "Digite o seu username");
+                add_atributo_form("form_login", "senha", "placeholder", "Digite a sua senha");
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>
+

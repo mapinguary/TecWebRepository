@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.html">
+        <ui:define name="conteudo">
+            <div class="container well">
+                <div>
+                    <h2>Médico</h2>
+                </div>
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" id="abas">
+                        <li class="active" id="aba_cadastro_medico"><a href="#cadastro_medico" data-toggle="tab"><i class="icon-plus"></i> Cadastrar Médicos</a></li>
+                        <li id="aba_listagem_medico"><a href="#listagem_medico" data-toggle="tab"><i class="icon-list-alt"></i> Listar Médicos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="cadastro_medico">
+                            <h:form id="form_cadastro_medico" styleClass="form-horizontal">
+                                <fieldset>
+                                    <legend>Cadastro de Médicos</legend>
+                                    <h:inputHidden value="#{MedicoController.medico.idMedico}" id="idMedico" />
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_medico:nome">Nome: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{MedicoController.medico.nome}" id="nome" maxlength="60" required="true" requiredMessage="Digite o nome" /> <h:message for="nome" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label required" for="form_cadastro_medico:crm">CRM: </label>
+                                        <div class="controls">
+                                            <h:inputText value="#{MedicoController.medico.crm}" id="crm" maxlength="15" required="true" requiredMessage="Digite o CRM" /> <h:message for="crm" styleClass="alert alert-error" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <h:commandButton value="Limpar" type="reset" styleClass="btn"/>
+                                        <h:outputText value=" "/> 
+                                        <h:commandButton styleClass="btn" action="#{MedicoController.salvar}" value="Cadastrar"/>
+                                        <br /><br />
+                                        <h:message errorClass="error" for="form_cadastro_medico" styleClass="alert alert-error" />
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="tab-pane" id="listagem_medico">
+                            <legend>Listagem de Médicos</legend>
+                            <div>
+                                <h:form id="form_lista_medicos">
+                                    <h:dataTable styleClass="table table-condensed tabela_lista tablesorter tabela_ordenada" value="#{MedicoController.listar()}" var="med" columnClasses="span2,,,span1,span1">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{med.medico.idMedico}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Nome"/>
+                                            </f:facet>
+                                            <h:outputText value="#{med.medico.nome}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="CRM"/>
+                                            </f:facet>
+                                            <h:outputText value="#{med.medico.crm}" />
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-small" action="#{MedicoController.alterarDados(med.medico)}" value="Editar"/>
+                                        </h:column>
+
+                                        <h:column headerClass="coluna_vazia">
+                                            <f:facet name="header">
+                                            </f:facet>
+                                            <h:commandLink styleClass="btn btn-danger btn-small" action="#{med.remover()}" value="Apagar"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+        <ui:define name="js_adicional">
+            <script>
+                add_atributo_form("form_cadastro_medico", "nome", "placeholder", "Digite o nome");
+                add_atributo_form("form_cadastro_medico", "crm", "placeholder", "Digite o crm");
+                function muda_aba(removeu){
+                    if(removeu != ""){
+                        $("#aba_cadastro_medico").removeClass("active");
+                        $("#cadastro_medico").removeClass("active");
+                        $("#aba_listagem_medico").addClass("active");
+                        $("#listagem_medico").addClass("active");
+                    }
+                }
+                $(document).ready(function () {
+                    muda_aba("#{param['removeu']}");
+                });
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>
+
