@@ -128,7 +128,7 @@ public class Agenda implements Serializable {
 
     @Override
     public String toString() {
-        return "com.arthurassuncao.model.Agenda[ agendaPK=" + agendaPK + " ]";
+        return "com.model.Agenda[ agendaPK=" + agendaPK + " ]";
     }
     
 }

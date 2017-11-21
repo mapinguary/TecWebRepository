@@ -85,7 +85,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.arthurassuncao.model.Usuario[ nome=" + nome + " ]";
+        return "com.model.Usuario[ nome=" + nome + " ]";
     }
     
 }

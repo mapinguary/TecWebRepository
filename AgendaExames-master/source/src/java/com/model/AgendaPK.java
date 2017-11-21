@@ -107,7 +107,7 @@ public class AgendaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.arthurassuncao.model.AgendaPK[ dataHora=" + dataHora + ", idMedico=" + idMedico + ", idExame=" + idExame + ", idPaciente=" + idPaciente + " ]";
+        return "com.model.AgendaPK[ dataHora=" + dataHora + ", idMedico=" + idMedico + ", idExame=" + idExame + ", idPaciente=" + idPaciente + " ]";
     }
     
 }

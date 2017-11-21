@@ -1,6 +1,8 @@
 
 package com.controller;
 
+
+
 import com.dao.InterfaceDAO;
 import com.dao.AgendaDAO;
 import com.model.Agenda;
@@ -11,6 +13,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
+
 
 
 public class AgendaController implements IControllerDAO<AgendaController, AgendaPK> {
@@ -93,7 +96,7 @@ public class AgendaController implements IControllerDAO<AgendaController, Agenda
 
     @Override
     public String remover() {
-        AgendaDAO agendaDao = new AgendaDAO();
+       InterfaceDAO agendaDao = new AgendaDAO();
         if (agendaDao.excluir(agenda)) {
             return "removeu_agenda";
         } else {
@@ -107,7 +110,7 @@ public class AgendaController implements IControllerDAO<AgendaController, Agenda
         Agenda agenda = agendaDao.consultar(chave);
         return new AgendaController(agenda);
     }
-
+    
     public List<AgendaController> buscar(Date dataInicial, Date dataFinal) {
         AgendaDAO agendaDao = new AgendaDAO();
         List<Agenda> agendas = agendaDao.buscar(dataInicial, dataFinal);
